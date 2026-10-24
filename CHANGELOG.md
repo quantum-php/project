@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog and this project adheres to Semantic Versioning.
 
-## [3.1.0] - TBD
+## [3.1.0] - 2026-10-24
 
 ### Added
 - A `cache/` folder for runtime cache files such as the file rate limiter's data. Its contents are git-ignored, so a fresh install no longer fails the first rate-limited request.
