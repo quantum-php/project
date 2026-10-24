@@ -26,7 +26,7 @@
     "type": "project",
     "require": {
         "php": "^8.1",
-        "quantum/framework": "dev-master",
+        "quantum/framework": "^3.1",
         "fakerphp/faker": "^1.15",
         "bluemmb/faker-picsum-photos-provider": "^2.0",
         "ottaviano/faker-gravatar": "^0.3.0",
