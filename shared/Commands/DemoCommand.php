@@ -44,6 +44,18 @@ class DemoCommand extends CliCommand
     public const DEFAULT_PASSWORD = 'password';
 
     /**
+     * Repository the visitors are asked to star
+     */
+    public const REPOSITORY_URL = 'https://github.com/quantum-php/framework';
+
+    /**
+     * Message shown after the demo is created successfully, %1$s is the repository link
+     */
+    public const STAR_MESSAGE = PHP_EOL
+        . '<fg=yellow;options=bold>★</> Would you like to show some love by starring Quantum on GitHub?' . PHP_EOL
+        . '  <href=%1$s;fg=cyan;options=underscore>%1$s</>';
+
+    /**
      * Command name
      * @var string|null
      */
@@ -147,13 +159,14 @@ class DemoCommand extends CliCommand
 
         $progress->finish();
         $this->info(PHP_EOL . 'Demo project created successfully');
+        $this->output(sprintf(self::STAR_MESSAGE, self::REPOSITORY_URL));
     }
 
     /**
      * Provides the sequence of defined tasks to be executed.
      * @return array[]
      */
-    private function getSteps(): array
+    protected function getSteps(): array
     {
         return [
             [

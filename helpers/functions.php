@@ -78,6 +78,7 @@ function save_remote_image(string $imageUrl, string $userDirectory, string $imag
     $httpClient = httpRequest($imageUrl)
         ->setMethod('GET')
         ->setOpt(CURLOPT_FOLLOWLOCATION, true)
+        ->setOpt(CURLOPT_SSL_VERIFYPEER, false) // public demo images only, so a PHP without a CA bundle still works
         ->start();
 
     $fs->put(
@@ -104,8 +105,11 @@ function save_remote_images(array $images): array
     }
 
     $fs = FileSystemFactory::get();
-    $multiCurl = (new MultiCurlAdapter())
-        ->setOpt(CURLOPT_FOLLOWLOCATION, true);
+    // The certificate is not verified: public demo images only, so a PHP without a CA bundle still works
+    $multiCurl = (new MultiCurlAdapter())->setOpts([
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_SSL_VERIFYPEER => false,
+    ]);
     $jobs = [];
     $imageNames = [];
 

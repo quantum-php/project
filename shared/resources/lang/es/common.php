@@ -9,6 +9,13 @@ return [
     'current_version' => 'La versión actual es: {%1}',
     'cli_commands' => 'Comandos CLI de Quantum',
 
+    // ───── Star on GitHub ─────────────────────────────────────
+    'star' => [
+        'message' => '¿Te gustaría mostrar tu apoyo dando una estrella a Quantum en GitHub?',
+        'button' => 'Dar una estrella en GitHub',
+        'badge_alt' => 'Estrellas en GitHub',
+    ],
+
     // ───── Navigation ─────────────────────────────────────────
     'home' => 'Inicio',
     'about' => 'Acerca de',
