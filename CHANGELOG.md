@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog and this project adheres to Semantic Versioning.
 
-## [Unreleased]
+## [3.1.1] - 2026-11-03
 
 ### Added
 - A message at the end of `php qt install:demo` that invites you to star Quantum on GitHub, with the link `https://github.com/quantum-php/framework`. It is shown only when the demo was created successfully (#194).
