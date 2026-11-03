@@ -8,6 +8,7 @@ The format is based on Keep a Changelog and this project adheres to Semantic Ver
 
 ### Added
 - A message at the end of `php qt install:demo` that invites you to star Quantum on GitHub, with the link `https://github.com/quantum-php/framework`. It is shown only when the demo was created successfully (#194).
+- The `common.star.message`, `common.star.button` and `common.star.badge_alt` texts, in English and Spanish, for the star block that the framework's `DemoWeb` About page shows. Without them the page shows the key names (#194).
 
 ## [3.1.0] - 2026-10-24
 
