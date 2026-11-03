@@ -42,6 +42,46 @@ class DemoCommandTest extends TestCase
         );
     }
 
+    public function testStarMessageLinkIsClickableInATerminal(): void
+    {
+        $output = $this->runCommand(new DemoCommandWithSteps(), ['--yes' => true], [], true);
+
+        $this->assertStringContainsString("\033]8;;" . self::REPOSITORY_URL . "\033\\", $output);
+        $this->assertStringContainsString(self::REPOSITORY_URL, $output);
+        $this->assertStringContainsString("\033]8;;\033\\", $output);
+    }
+
+    public function testStarMessageHasAColoredStarAndAnUnderlinedLink(): void
+    {
+        $output = $this->runCommand(new DemoCommandWithSteps(), ['--yes' => true], [], true);
+
+        $this->assertStringContainsString("\033[33;1m★\033[39;22m", $output);
+        $this->assertStringContainsString(
+            "\033[36;4m\033]8;;" . self::REPOSITORY_URL . "\033\\" . self::REPOSITORY_URL . "\033]8;;\033\\\033[39;24m",
+            $output
+        );
+    }
+
+    public function testStarMessageIsPlainTextWhenTheOutputIsNotATerminal(): void
+    {
+        $output = $this->runCommand(new DemoCommandWithSteps(), ['--yes' => true]);
+
+        $this->assertStringNotContainsString("\033", $output);
+        $this->assertStringNotContainsString('<href', $output);
+        $this->assertStringNotContainsString('<fg=', $output);
+        $this->assertStringContainsString('★ Would you like to show some love by starring Quantum on GitHub?', $output);
+    }
+
+    public function testStarMessageHasTheLinkOnItsOwnLineAfterABlankLine(): void
+    {
+        $output = $this->runCommand(new DemoCommandWithSteps(), ['--yes' => true]);
+
+        $this->assertMatchesRegularExpression(
+            '/Demo project created successfully\R\R★ [^\r\n]+\R {2}' . preg_quote(self::REPOSITORY_URL, '/') . '\R/',
+            $output
+        );
+    }
+
     public function testStarMessageIsNotShownWhenTheOperationIsCancelled(): void
     {
         $output = $this->runCommand(new DemoCommandWithSteps(), [], ['no']);
@@ -85,9 +125,9 @@ class DemoCommandTest extends TestCase
      * @param array<string, mixed> $input
      * @param array<int, string> $answers
      */
-    private function runCommand(DemoCommand $command, array $input, array $answers = []): string
+    private function runCommand(DemoCommand $command, array $input, array $answers = [], bool $decorated = false): string
     {
-        $output = new BufferedOutput();
+        $output = new BufferedOutput(BufferedOutput::VERBOSITY_NORMAL, $decorated);
 
         $arrayInput = new ArrayInput(['command' => 'install:demo'] + $input);
         $arrayInput->setInteractive($answers !== []);
