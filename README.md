@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://quantumphp.io">
-        <img src="https://quantumphp.io/assets/img/quantum-favicon.png" alt="Quantum" height="150"/>
+        <img src="https://quantumphp.io/quantum-logo.png" alt="Quantum" height="150"/>
     </a>
 </p>
 
@@ -28,7 +28,7 @@
 </p>
 
 <h2>Features</h2>
-<img src="https://quantumphp.io/assets/img/features.png" alt="Quantum" />
+<img src="https://quantumphp.io/images/features.png" alt="Quantum" />
 
 <h2>Installation</h2>
 
@@ -48,7 +48,7 @@ php qt serve
 <br/>
 
 <h2>Quick Demo</h2>
-<img src="https://quantumphp.io/assets/img/qt_demo.gif"/>
+<img src="https://quantumphp.io/images/quick-demo.gif"/>
 
 <h3>Give it a star if you like the project</h3>
 <img width="100" src="https://i.imgur.com/YaY5arh.gif">
