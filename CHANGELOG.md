@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog and this project adheres to Semantic Versioning.
 
-## [Unreleased]
+## [3.1.2] - 2026-11-19
 
 ### Added
 - The `comments.added` and `comments.deleted` texts, in English and Spanish, for the flash messages of the framework's `DemoWeb` comment controller. They were called but never defined, so the page showed the key names (#216).
