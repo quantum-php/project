@@ -21,7 +21,7 @@ return [
     'redis' => [
         'prefix' => str_replace(' ', '', env('APP_NAME') ?? ''),
         'host' => env('REDIS_HOST', '127.0.0.1'),
-        'port' => env('REDIS_PORT', 6379),
+        'port' => env_int('REDIS_PORT', 6379),
         'ttl' => 60,
     ],
 ];
