@@ -45,7 +45,7 @@ return [
      *
      * Enables or disables project debug.
      */
-    'debug' => env('DEBUG', true),
+    'debug' => env_bool('DEBUG', true),
 
     /**
      * ---------------------------------------------------------
@@ -54,6 +54,6 @@ return [
      *
      * Enables or disables project resource cache.
      */
-    'resource_cache' => env('RESOURCE_CACHE', false),
+    'resource_cache' => env_bool('RESOURCE_CACHE', false),
 
 ];

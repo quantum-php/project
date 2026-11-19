@@ -21,7 +21,7 @@ return [
     'smtp' => [
         'host' => env('MAIL_HOST'),
         'secure' => env('MAIL_SMTP_SECURE'),
-        'port' => env('MAIL_PORT'),
+        'port' => env_int('MAIL_PORT', 25),
         'username' => env('MAIL_USERNAME'),
         'password' => env('MAIL_PASSWORD'),
     ],
