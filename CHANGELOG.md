@@ -8,6 +8,7 @@ The format is based on Keep a Changelog and this project adheres to Semantic Ver
 
 ### Changed
 - **BREAKING:** PHP 8.2 or newer is required, as for quantum/framework 3.2: `composer.json` requires `php` `^8.2`, CI tests PHP 8.2, 8.3 and 8.4, and PHPStan and Rector target PHP 8.2. Projects on PHP 8.1 stay on 3.1.x (#220).
+- **BREAKING:** `symfony/process` and `symfony/yaml` are updated to `^7.4` (they were `^5.4`), because the framework's `symfony/console` 7.4 conflicts with `symfony/process` below 6.4. A project that uses `symfony/process` or `symfony/yaml` directly gets their 7.4 versions (#220).
 
 ## [3.1.2] - 2026-11-19
 
