@@ -32,7 +32,7 @@
 
 <h2>Installation</h2>
 
-<p><strong>Requirements:</strong> PHP 8.1 or newer.</p>
+<p><strong>Requirements:</strong> PHP 8.2 or newer.</p>
 
 <h3> 1. Create new project </h3>
 
