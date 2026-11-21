@@ -2,11 +2,15 @@
 
 namespace Quantum\Tests\Feature;
 
+use Quantum\App\Factories\AppFactory;
+use Quantum\Tracer\ErrorHandler;
 use PHPUnit\Framework\TestCase;
 use Quantum\App\Enums\AppType;
 use Quantum\Http\Response;
-use Quantum\App\App;
+use ReflectionFunction;
 use RuntimeException;
+use Quantum\App\App;
+use Closure;
 
 class AppTestCase extends TestCase
 {
@@ -33,6 +37,8 @@ class AppTestCase extends TestCase
     public function tearDown(): void
     {
         $this->clearRateLimitStorage();
+        AppFactory::destroy(AppType::WEB);
+        $this->removeFrameworkErrorHandlers();
         parent::tearDown();
         ob_end_clean();
     }
@@ -57,6 +63,34 @@ class AppTestCase extends TestCase
         ]);
 
         return $response->get('tokens');
+    }
+
+    /**
+     * Removes the error and exception handlers that the framework's ErrorHandler registered
+     * when setUp() booted the app; the handlers of the console app that tests/bootstrap.php
+     * boots once stay in place
+     */
+    private function removeFrameworkErrorHandlers(): void
+    {
+        $isFrameworkHandler = $this->isFrameworkHandler(set_error_handler(static fn (): bool => false));
+        restore_error_handler();
+
+        if ($isFrameworkHandler) {
+            restore_error_handler();
+        }
+
+        $isFrameworkHandler = $this->isFrameworkHandler(set_exception_handler(static function (): void {
+        }));
+        restore_exception_handler();
+
+        if ($isFrameworkHandler) {
+            restore_exception_handler();
+        }
+    }
+
+    private function isFrameworkHandler(mixed $handler): bool
+    {
+        return $handler instanceof Closure && (new ReflectionFunction($handler))->getClosureThis() instanceof ErrorHandler;
     }
 
     private function clearRateLimitStorage(): void

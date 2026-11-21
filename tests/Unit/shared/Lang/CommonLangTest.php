@@ -2,6 +2,7 @@
 
 namespace Quantum\Tests\Unit\shared\Lang;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class CommonLangTest extends TestCase
@@ -31,9 +32,7 @@ class CommonLangTest extends TestCase
         'token',
     ];
 
-    /**
-     * @dataProvider languageProvider
-     */
+    #[DataProvider('languageProvider')]
     public function testEveryLanguageHasTheStarTexts(string $language): void
     {
         $star = $this->texts($language, 'pages')['star'] ?? null;
@@ -64,9 +63,7 @@ class CommonLangTest extends TestCase
         $this->assertSame('GitHub stars', $star['badge_alt'] ?? null);
     }
 
-    /**
-     * @dataProvider languageProvider
-     */
+    #[DataProvider('languageProvider')]
     public function testCommonKeepsTheKeysTheFrameworkReadsByName(string $language): void
     {
         $keys = $this->flatten($this->texts($language, 'common'));
@@ -79,9 +76,7 @@ class CommonLangTest extends TestCase
         $this->assertSame([], array_values(array_diff(array_keys($keys), self::COMMON_KEYS)));
     }
 
-    /**
-     * @dataProvider languageProvider
-     */
+    #[DataProvider('languageProvider')]
     public function testCommentMessagesAreTranslated(string $language): void
     {
         $comments = $this->texts($language, 'comments');
