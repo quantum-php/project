@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog and this project adheres to Semantic Versioning.
 
+## [Unreleased]
+
+### Changed
+- **BREAKING:** PHP 8.2 or newer is required, as for quantum/framework 3.2: `composer.json` requires `php` `^8.2`, CI tests PHP 8.2, 8.3 and 8.4, and PHPStan and Rector target PHP 8.2. Projects on PHP 8.1 stay on 3.1.x (#220).
+
 ## [3.1.2] - 2026-11-19
 
 ### Added
